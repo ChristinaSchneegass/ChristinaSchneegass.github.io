@@ -1,66 +1,104 @@
 <!DOCTYPE html>
+<!--
+    Plain-Academic by Vasilios Mavroudis
+    Released under the Simplified BSD License/FreeBSD (2-clause) License.
+    https://github.com/mavroudisv/plain-academic
+-->
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christina Schneegass</title>
-    <link rel="stylesheet" href="styles.css">
+  <title>Christina Schneegass</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="cv.html">CV</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="publications.html">Publications</a></li>
-            </ul>
-        </nav>
-        <h1>Christina Schneegass</h1>
-        <p>Assistant Professor specializing in cognition and design</p>
-    </header>
-    <main>
-        <section>
-            <h2>Welcome</h2>
-            <p>Welcome to my personal website. Here you can find information about my research, projects, and publications.</p>
-        </section>
-    </main>
-    <footer>
-<div class="footer-bottom">
-		
-		<div class="container">
 
-			<div class="footer-bottom-content">
-				
-								
-					<div class="footer-content-right">
-							<ul class="social-networks rounded">
-<li>
-<a href="https://www.linkedin.com/in/christina-schneegass-342535205/" target="_blank" class="linkedin" title="LinkedIn"><i class="fa fa-linkedin"></I>
-<span class="name">LinkedIn</span></a>
-</li>
-<li>
-<a href="https://scholar.google.com/citations?user=JvR3tNYAAAAJ&hl=en&oi=ao" target="_blank" class="google_scholar" title="Google Scholar"><i class="ai ai-google-scholar"></I>
-<span class="name">Google Scholar</span></a>
-</li>
-<li>
-<a href="https://dl.acm.org/profile/99659214226" target="_blank" class="acm_dl" title="ACM DL"><i class="ai ai-acmdl"></I>
-<span class="name">ACM Digital Library</span></a>
-</li>
-<li>
-<a href="https://www.researchgate.net/profile/Christina-Schneegass" target="_blank" class="researchgate" title="ResearchGate"><i class="ai ai-researchgate"></I>
-<span class="name">ResearchGate</span></a>
-</li>
-<li>
-<a href="https://orcid.org/0000-0003-3768-5894" target="_blank" class="orcid" title="ORCID"><i class="ai ai-orcid"></I>
-<span class="name">ORCID</span></a>
-</li>
-</ul>							
-					</div>
-					
-        
-        <p>&copy; 2024 Christina Schneegass. All rights reserved.</p>
-    </footer>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+  <div class="row">
+    <!-- Entries Column -->
+    <div class="col-md-8" style="height: 100vh;">
+      <!-- Main Image -->
+      <img class="img-responsive" src="photo.jpg" alt="Christina Schneegass"><br>
+
+      <div style="margin-top:3%; text-align:justify;">
+        <h2>Welcome</h2>
+        <p>I am an assistant professor specializing in cognition and design at the Human-Centred Design department within the Faculty of Industrial Design Engineering at TU Delft. My research focuses on leveraging design to enhance people's interactions with technology through cognitive awareness and cognitive augmentation.</p>
+
+        <p>Prior to my role at TU Delft, I worked as a UX researcher at PwC's Experience Consulting Team in Germany, where I assisted clients across various domains in developing products and services that are viable, feasible, and desirable, with a positive societal impact. I hold a PhD from the Media Informatics Group at LMU Munich, Germany, with a specialization in Human-Computer Interaction (HCI), focusing on designing technology that integrates with human cognition. My research aims to develop and evaluate technologies that seamlessly integrate into daily life and enhance cognitive abilities.</p>
+
+        <p>I have authored or co-authored over 35 publications, which have been cited 196 times to date. My background, which combines cognitive psychology and computer science, along with my experience in a design-oriented industry team, equips me with the expertise to apply user-centered research using both qualitative and quantitative methods to design and evaluate advanced technologies and applications.</p>
+      </div>
+    </div>
+
+    <!-- Contact Info on the Sidebar -->
+    <div class="col-md-4">
+      <div style="font-family: 'Oswald', sans-serif; font-size: 32px;"><b>Christina Schneegass</b></div><br>
+      <p><b>christina at schneegass.com</b><br>
+      <p>Human-Centred Design Department<br>
+      Faculty of Industrial Design Engineering<br>
+      TU Delft<br>
+      Delft, Netherlands<br>
+      </p>
+    </div>
+
+    <!-- Links on the Sidebar -->
+    <div class="col-md-4" style="margin-top:2%">
+      <dd><a href="https://scholar.google.com" target="_blank">Google Scholar</a></dd>
+      <dd><a href="https://www.linkedin.com" target="_blank">LinkedIn</a></dd>
+      <dd><a href="https://www.researchgate.net" target="_blank">ResearchGate</a></dd>
+    </div>
+
+    <!-- Publications -->
+    <div class="col-md-8" style="height: 100vh;">
+      <h2 id="publications">Publications</h2>
+
+      <strong>Peer-reviewed</strong><br/>
+      <ul>
+        <li class="paper" words="add, your, keywords, here"><a href="#">Full title</a> Names of the authors</li>
+      </ul>
+
+      <strong>Technical Reports</strong><br/>
+      <ul>
+        <li class="paper" words="add, your, keywords, here"><a href="#">Full title</a>. Details of the report</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- /.container -->
+
+<!-- Other people may like it too! -->
+<a style="color:#b5bec9;font-size:0.8em; float:right;" href="https://github.com/mavroudisv/plain-academic">Plain Academic</a>
+
 </body>
 </html>
+
