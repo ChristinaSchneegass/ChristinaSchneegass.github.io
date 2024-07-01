@@ -18,6 +18,10 @@
     .contact-form label {
       font-weight: bold;
     }
+    .contact-form .required::after {
+      content: " *";
+      color: red;
+    }
     .contact-form textarea {
       resize: none;
     }
@@ -55,23 +59,22 @@
   <div class="row">
     <div class="col-md-12">
       <h2>Contact</h2>
-
+      <p>Please use the form below to contact me.</p>
       <form class="contact-form" action="mailto:christina.schneegass@gmail.com" method="post" enctype="text/plain">
         <div class="form-group">
-          <label for="name">Name:</label>
+          <label for="name" class="required">Name:</label>
           <input type="text" class="form-control" id="name" name="name" required>
         </div>
         <div class="form-group">
-          <label for="email">Email:</label>
+          <label for="email" class="required">Email:</label>
           <input type="email" class="form-control" id="email" name="email" required>
         </div>
         <div class="form-group">
-          <label for="message">Message:</label>
+          <label for="message" class="required">Message:</label>
           <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Send</button>
       </form>
-
     </div>
   </div>
 </div>
