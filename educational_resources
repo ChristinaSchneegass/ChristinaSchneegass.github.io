@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+re<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -43,29 +43,23 @@ h1 {
 <h1>Educational Resources</h1>
 
 <div id="lightgallery" class="grid">
-    <a href="lectures/intro_ml.pdf" data-sub-html="<h4>Introduction to Machine Learning</h4><p>Beginner overview of ML</p>">
+    <a href="lecture_week_2.pdf" data-sub-html="<h4>Attention</h4><p>Lecture on Attention</p>">
         <div class="card">
             <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF icon">
-            <h3>Introduction to ML</h3>
-            <p>Beginner overview of ML</p>
+            <h3>Attention</h3>
+            <p>Lecture on Attention</p>
         </div>
     </a>
 
-    <a href="lectures/advanced_nn.pdf" data-sub-html="<h4>Advanced Neural Networks</h4><p>Dive deeper into neural architectures</p>">
+    <a href="lecture_week_5.pdf" data-sub-html="<h4>Learning and Motivation</h4><p>Lecture on Learning and Motivation</p>">
         <div class="card">
             <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF icon">
-            <h3>Advanced Neural Networks</h3>
-            <p>Deep dive into architectures</p>
+            <h3>Learning and Motivation</h3>
+            <p>Lecture on Learning and Motivation</p>
         </div>
     </a>
 
-    <a href="lectures/data_viz.pdf" data-sub-html="<h4>Data Visualization Techniques</h4><p>How to make your data shine</p>">
-        <div class="card">
-            <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF icon">
-            <h3>Data Visualization</h3>
-            <p>Make your data shine</p>
-        </div>
-    </a>
+   
 </div>
 
 <!-- lightGallery JS -->
