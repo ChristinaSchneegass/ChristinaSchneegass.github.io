@@ -1,56 +1,57 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Educational Resources</title>
+  <title>Education Resources - Christina Schneegass</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- lightGallery CSS -->
-<link href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery-bundle.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <!-- Bootstrap & Fonts (match projects.html) -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
-  
-  
-<style>
-.educational-resources {
-  background-color: #f9f9f9;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-}
 
-.educational-resources h1 {
-  text-align: center;
-  margin-bottom: 30px;
-}
+  <style>
+    /* Match general look-and-feel of projects.html */
+    body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
-.educational-resources .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
+    .page-title { margin-top: 10px; }
 
-.educational-resources .card {
-  background: white;
-  padding: 15px;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-}
+    .project-item { /* reuse the same visual pattern as projects.html */
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+    }
+    .project-item img {
+      margin-right: 20px;
+      width: 120px; /* smaller than projects images since these are PDFs */
+      height: auto;
+    }
+    .project-item .details { max-width: 800px; }
+    .project-item .details .title {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+    .project-item .meta { color: #666; font-size: 0.95em; margin-bottom: 10px; }
+    .btn-wrap { margin-top: 10px; }
+    .btn-wrap .btn { margin-right: 8px; margin-bottom: 6px; }
 
-.educational-resources .card img {
-  width: 80px;
-  margin-bottom: 10px;
-}
-</style>
+    /* Tag pills (optional) */
+    .tag { display: inline-block; background: #eee; border-radius: 20px; padding: 4px 10px; font-size: 12px; margin-right: 6px; }
+
+    /* License box */
+    .license-box { background: #f5f5f5; border-left: 4px solid #ddd; padding: 15px; border-radius: 4px; }
+    .license-box small { color: #666; }
+  </style>
 </head>
-
 <body>
-    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+
+<!-- Navigation (copied structure from projects.html) -->
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -61,14 +62,12 @@
       </button>
     </div>
 
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="index.html">Home</a></li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="publications.html">Publications</a></li>
-              <li><a href="education_resources.html">Education Resources</a></li>
+        <li class="active"><a href="education_resources.html">Education Resources</a></li>
         <li><a href="cv.html">CV</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -76,40 +75,59 @@
   </div>
 </nav>
 
-<h1>Educational Resources</h1>
+<!-- Page Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="page-title">Course Slides & Materials</h2>
+      <p class="lead">Slides from my course on cognitive and psychological foundations for product design. Feel free to view online or download for teaching and study.</p>
 
-<div id="lightgallery" class="grid">
-    <a href="Lecture_Week_2.pdf" data-sub-html="<h4>Attention</h4><p>Lecture on Attention</p>">
-        <div class="card">
-            <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF icon">
-            <h3>Attention</h3>
-            <p>Lecture on Attention</p>
+      <!-- Resource 1 -->
+      <div class="project-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF icon for Attention slides">
+        <div class="details">
+          <div class="title">Attention</div>
+          <div class="meta">Lecture slides • PDF</div>
+          <p>Core models of attention (selective, divided, sustained), implications for interface layout, salience, and visual hierarchy.</p>
+          <div class="btn-wrap">
+            <a class="btn btn-primary" href="Lecture_Week_2.pdf" target="_blank" rel="noopener">View PDF</a>
+            <a class="btn btn-default" href="Lecture_Week_2.pdf" download>Download</a>
+            <span class="tag">Perception</span>
+            <span class="tag">UX Heuristics</span>
+          </div>
         </div>
-    </a>
+      </div>
 
-    <a href="Lecture_Week_5.pdf" data-sub-html="<h4>Learning and Motivation</h4><p>Lecture on Learning and Motivation</p>">
-        <div class="card">
-            <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF icon">
-            <h3>Learning and Motivation</h3>
-            <p>Lecture on Learning and Motivation</p>
+      <!-- Resource 2 -->
+      <div class="project-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF icon for Learning & Motivation slides">
+        <div class="details">
+          <div class="title">Learning & Motivation</div>
+          <div class="meta">Lecture slides • PDF</div>
+          <p>Behaviorist vs. constructivist learning, cognitive load theory, and motivation models (SDT, expectancy-value) with design takeaways.</p>
+          <div class="btn-wrap">
+            <a class="btn btn-primary" href="Lecture_Week_5.pdf" target="_blank" rel="noopener">View PDF</a>
+            <a class="btn btn-default" href="Lecture_Week_5.pdf" download>Download</a>
+            <span class="tag">Cognitive Load</span>
+            <span class="tag">Behavior Change</span>
+          </div>
         </div>
-    </a>
+      </div>
 
-   
+      <!-- Add more resources by duplicating .project-item blocks -->
+
+      <hr>
+
+      <h3>License & Disclaimer</h3>
+      <div class="license-box">
+        <p><strong>Copyright:</strong> © 2025 Christina Schneegass. Unless otherwise noted, these materials are licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY‑NC 4.0</a> (Attribution–NonCommercial). You may remix, adapt, and build upon the material for non‑commercial purposes, provided you credit the author.</p>
+        <p><strong>Disclaimer:</strong> These materials are provided for educational purposes. While care has been taken to ensure accuracy, they may not reflect the most up‑to‑date research or industry practices. Always verify critical information before applying it.</p>
+        <p><small><em>Third‑party content:</em> Images or figures credited to other authors remain under their respective licenses and are used with permission or under fair use. Please retain any attributions when reusing the slides.</small></p>
+      </div>
+
+    </div>
+  </div>
 </div>
-
-<!-- lightGallery JS -->
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/zoom/lg-zoom.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.umd.min.js"></script>
-
-<script>
-lightGallery(document.getElementById('lightgallery'), {
-    plugins: [lgZoom, lgThumbnail],
-    licenseKey: '0000-0000-000-0000', // leave as default for free use
-    speed: 500,
-});
-</script>
 
 </body>
 </html>
