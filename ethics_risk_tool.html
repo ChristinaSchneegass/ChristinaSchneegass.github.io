@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Human Research Ethics Risk Awareness Tool | Christina Schneegass</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+  <style>
+    body { background: #f7f7f7; color: #222; }
+    .ethics-hero { background: #fff; border-left: 6px solid #00a6d6; padding: 28px; margin-bottom: 24px; box-shadow: 0 1px 8px rgba(0,0,0,.08); }
+    .ethics-hero h1 { margin-top: 0; font-family: 'Oswald', sans-serif; letter-spacing: .2px; }
+    .notice { background: #fff8e5; border: 1px solid #f0d58a; padding: 16px; margin: 18px 0; }
+    .overview { background: #fff; padding: 20px; margin-bottom: 20px; box-shadow: 0 1px 8px rgba(0,0,0,.08); }
+    .domain-pill { display: inline-block; margin: 6px 6px 6px 0; padding: 8px 11px; border-radius: 18px; background: #e8f3f8; color: #155d75; font-size: 13px; }
+    .sticky-progress { position: sticky; top: 0; z-index: 9; background: rgba(247,247,247,.96); padding: 10px 0 12px; border-bottom: 1px solid #ddd; margin-bottom: 18px; }
+    .progress { height: 18px; margin-bottom: 6px; background: #e6e6e6; }
+    .progress-bar { background-color: #00a6d6; }
+    .progress-meta { display: flex; justify-content: space-between; font-size: 13px; color: #555; }
+    .domain { margin: 34px 0 18px; padding: 16px 18px; color: #fff; border-radius: 4px; box-shadow: 0 1px 8px rgba(0,0,0,.1); }
+    .domain h2 { color: #fff; margin: 0 0 6px; }
+    .domain p { margin: 0; opacity: .95; }
+    .d1 { background: #0076a8; } .d2 { background: #7b4fa3; } .d3 { background: #008577; } .d4 { background: #b35a00; } .d5 { background: #6b7c00; } .d6 { background: #8a1538; } .d7 { background: #455a64; } .d8 { background: #5d6cc0; } .d9 { background: #946200; } .d10 { background: #47525e; }
+    .question-card { background: #fff; margin: 18px 0; padding: 22px; border-radius: 4px; box-shadow: 0 1px 8px rgba(0,0,0,.08); border-top: 4px solid #ddd; }
+    .question-card.active { border-top-color: #00a6d6; }
+    .question-head { display: flex; gap: 14px; align-items: flex-start; }
+    .q-number { flex: 0 0 auto; width: 44px; height: 44px; line-height: 44px; border-radius: 50%; background: #00a6d6; color: #fff; text-align: center; font-weight: bold; }
+    .question-card h3 { margin-top: 0; color: #222; }
+    .question-explain { font-size: 15px; color: #444; margin-top: 4px; }
+    .examples { margin: 16px 0; padding: 14px 16px; background: #eef7fb; border-left: 4px solid #00a6d6; }
+    .examples strong { display: block; margin-bottom: 7px; }
+    .answer-row { margin: 14px 0 8px; }
+    .answer-row label { margin-right: 16px; font-weight: normal; }
+    .details-toggle { margin-top: 8px; }
+    .risk-details { display: none; margin-top: 16px; padding-top: 16px; border-top: 1px solid #e5e5e5; }
+    .risk-details h4 { margin-top: 0; color: #333; }
+    .risk-details ul { padding-left: 22px; }
+    .tag { display: inline-block; padding: 3px 7px; margin: 2px 3px 2px 0; background: #f0f0f0; border-radius: 3px; font-size: 12px; color: #444; }
+    .summary-box { background: #fff; padding: 22px; margin: 30px 0 60px; box-shadow: 0 1px 8px rgba(0,0,0,.08); border-left: 6px solid #00a6d6; }
+    .btn-primary { background: #00a6d6; border-color: #008fba; }
+    .btn-primary:hover { background: #008fba; border-color: #007aa0; }
+    @media print { .navbar, .sticky-progress, .answer-row, .details-toggle, .btn { display:none !important; } .risk-details { display:block !important; } body { background:#fff; } .question-card, .overview, .ethics-hero, .summary-box { box-shadow:none; border:1px solid #ddd; } }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="education_resources.html">Education Resources</a></li>
+        <li class="active"><a href="ethics_risk_tool.html">Ethics Risk Tool</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="ethics-hero">
+    <h1>Human Research Ethics Risk Awareness Tool</h1>
+    <p class="lead">A pre-HREC reflection tool for TU Delft graduation projects in HCI, design, and human-centred research.</p>
+    <div class="notice">
+      <strong>Important:</strong> This tool supports early ethical reflection and HREC/DMP preparation. It does not provide ethics approval, does not determine whether a project is ethically acceptable, and does not replace careful thinking, supervisor consultation, HREC advice, Privacy Team advice, Data Steward input, or other expert review.
+    </div>
+    <p>Answer the questions at a high level. You do not need to disclose company names, participant names, supervisor names, confidential project details, or unpublished ideas. The goal is to identify possible areas of risk before writing formal HREC documentation.</p>
+  </div>
+
+  <div class="overview">
+    <h2>Overview of domains</h2>
+    <p>The tool contains 36 consecutive questions across the following domains:</p>
+    <span class="domain-pill">1. Human Subjects & Consent</span>
+    <span class="domain-pill">2. Participant Welfare & Harm</span>
+    <span class="domain-pill">3. Recruitment & Access</span>
+    <span class="domain-pill">4. Data & Privacy</span>
+    <span class="domain-pill">5. AI & Emerging Technologies</span>
+    <span class="domain-pill">6. Research Design & Integrity</span>
+    <span class="domain-pill">7. Organizations & Companies</span>
+    <span class="domain-pill">8. International Research</span>
+    <span class="domain-pill">9. Broader Impacts</span>
+    <span class="domain-pill">10. Researcher Safety</span>
+  </div>
+
+  <div class="sticky-progress">
+    <div class="progress"><div id="progressBar" class="progress-bar" role="progressbar" style="width:0%"></div></div>
+    <div class="progress-meta"><span id="progressText">0 of 36 questions answered</span><span id="currentDomain">Start with Question 1</span></div>
+  </div>
+
+  <form id="ethicsForm">
+    <section class="domain d1" data-domain="Domain 1 – Human Subjects & Consent"><h2>Domain 1 – Human Subjects & Consent</h2><p>These questions identify whether people are involved, whether consent is meaningful, and whether participants can freely decide whether to participate.</p></section>
+    <article class="question-card" id="q1" data-question="1" data-domain="Domain 1 – Human Subjects & Consent">
+      <div class="question-head">
+        <div class="q-number">1</div>
+        <div>
+          <h3>Does your project involve humans?</h3>
+          <p class="question-explain">This includes direct interaction with people as well as research using information about people. If people are asked to do, say, test, reflect on, or provide anything for your study, human-subject considerations may apply.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Interviews with users about a new mobility app</li><li>Usability testing of a prototype interface</li><li>Co-design workshops with students or professionals</li><li>Diary studies about daily routines</li><li>Observing people using a product in context</li><li>Evaluating an AI assistant with participants</li><li>Using previously collected participant data</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q1" value="yes"> Yes</label>
+        <label><input type="radio" name="q1" value="no"> No</label>
+        <label><input type="radio" name="q1" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q1" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Participants may not realize they are taking part in research.</li><li>Participants may not understand what happens to their data.</li><li>Participants may not understand their rights.</li><li>Human-subject research may be incorrectly treated as non-human-subject research.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q2" data-question="2" data-domain="Domain 1 – Human Subjects & Consent">
+      <div class="question-head">
+        <div class="q-number">2</div>
+        <div>
+          <h3>Can participants legally and meaningfully consent?</h3>
+          <p class="question-explain">Some people may not be able to legally or fully understand consent without additional safeguards. This question is about capacity to understand, decide, and communicate a voluntary decision.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Testing a learning app with children under 16</li><li>Interviewing people with dementia or cognitive impairments</li><li>Research in assisted living facilities</li><li>Design studies with people who have reduced autonomy</li><li>Studies where a caregiver or legal representative may need to be involved</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q2" value="yes"> Yes</label>
+        <label><input type="radio" name="q2" value="no"> No</label>
+        <label><input type="radio" name="q2" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q2" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Consent may not be legally valid.</li><li>Participants may agree without fully understanding the study.</li><li>A parent, legal guardian, caregiver, or representative may be required.</li><li>The research may become substantially more complex than initially expected.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q3" data-question="3" data-domain="Domain 1 – Human Subjects & Consent">
+      <div class="question-head">
+        <div class="q-number">3</div>
+        <div>
+          <h3>Could participants be vulnerable?</h3>
+          <p class="question-explain">Vulnerability is context-dependent. A person is not necessarily vulnerable in general, but may become vulnerable in a specific research situation due to health, social position, dependency, legal status, economic circumstances, disclosure risk, or the topic of the study.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Employees interviewed about workplace problems</li><li>Students participating in a lecturer's research</li><li>Refugees involved in service-design research</li><li>LGBTQI+ participants discussing identity-related experiences where disclosure could create risk</li><li>Patients evaluating a healthcare technology</li><li>Older adults testing a digital service</li><li>People experiencing grief discussing memorial technologies</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q3" value="yes"> Yes</label>
+        <label><input type="radio" name="q3" value="no"> No</label>
+        <label><input type="radio" name="q3" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q3" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Participants may be more susceptible to harm or pressure.</li><li>Participants may have reduced ability to refuse or withdraw freely.</li><li>Privacy consequences may be more serious.</li><li>Disclosures may lead to stigma, discrimination, exclusion, or distress.</li><li>Small communities may increase re-identification risk.</li></ul><h4>Groups to consider</h4><ul><li>Health-related: physical disabilities, cognitive impairments, mental health conditions, severe illness, hospital patients</li><li>Dependency: students, employees, interns, military personnel, prisoners, care home residents</li><li>Social: refugees, asylum seekers, undocumented migrants, homeless people, victims of violence, survivors of trauma, LGBTQI+ participants where disclosure creates risks</li><li>Economic: financially disadvantaged participants, participants dependent on compensation</li><li>Digital: limited digital literacy, limited understanding of online privacy risks</li><li>Temporary: stress, burnout, grief, crisis situations, major life transitions</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q4" data-question="4" data-domain="Domain 1 – Human Subjects & Consent">
+      <div class="question-head">
+        <div class="q-number">4</div>
+        <div>
+          <h3>Could participants feel pressured to participate?</h3>
+          <p class="question-explain">Even adults who can consent may not feel completely free to refuse. Pressure can come from hierarchy, dependency, social relationships, company settings, classroom settings, or expectations from peers.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Employees recruited through their manager</li><li>Students recruited by a lecturer or thesis supervisor</li><li>Interns recruited at their internship company</li><li>Team members asked to join a workshop</li><li>Friends or family joining a student project</li><li>People offered compensation in a way that makes refusal difficult</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q4" value="yes"> Yes</label>
+        <label><input type="radio" name="q4" value="no"> No</label>
+        <label><input type="radio" name="q4" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q4" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Participation may not be fully voluntary.</li><li>Consent may be invalid because of power imbalance.</li><li>Participants may fear negative consequences for refusal.</li><li>Participants may give socially desirable answers instead of honest feedback.</li><li>If GDPR consent is used as the legal basis, hierarchical relationships can undermine the validity of consent.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q5" data-question="5" data-domain="Domain 1 – Human Subjects & Consent">
+      <div class="question-head">
+        <div class="q-number">5</div>
+        <div>
+          <h3>Is compensation involved?</h3>
+          <p class="question-explain">Compensation can be appropriate, but it can also influence whether people feel able to refuse or stop participating. The key issue is whether the reward is proportionate and not coercive.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Gift cards for usability testing</li><li>Course credits for student participation</li><li>Lottery rewards for survey completion</li><li>Payment for workshop participation</li><li>Reimbursement for travel or accompanying persons</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q5" value="yes"> Yes</label>
+        <label><input type="radio" name="q5" value="no"> No</label>
+        <label><input type="radio" name="q5" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q5" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Compensation may become undue influence.</li><li>Financially vulnerable people may feel unable to refuse.</li><li>Participants may stay in an uncomfortable study because of the reward.</li><li>Rewards may bias recruitment or participation behaviour.</li><li>Participation may be motivated mainly by payment rather than informed willingness.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q6" data-question="6" data-domain="Domain 1 – Human Subjects & Consent">
+      <div class="question-head">
+        <div class="q-number">6</div>
+        <div>
+          <h3>Do participants have enough time and information to decide?</h3>
+          <p class="question-explain">Informed consent requires understandable information and enough time to consider participation. This is especially important when consent is obtained immediately before a session or embedded in an online flow.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Workshop participants asked to sign consent at the start of a session</li><li>Interviewees recruited on the spot in a public space</li><li>Online survey participants clicking quickly through consent screens</li><li>Prototype users not noticing that interaction logs are collected</li><li>Participants not realizing AI tools will process their answers</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q6" value="yes"> Yes</label>
+        <label><input type="radio" name="q6" value="no"> No</label>
+        <label><input type="radio" name="q6" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q6" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Participants may not read or understand the information.</li><li>Participants may misunderstand risks, AI use, data sharing, or publication plans.</li><li>Technical language may make consent ineffective.</li><li>Participants may not have enough time to ask questions.</li><li>Consent may not be truly informed.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q7" data-question="7" data-domain="Domain 1 – Human Subjects & Consent">
+      <div class="question-head">
+        <div class="q-number">7</div>
+        <div>
+          <h3>Can participants withdraw?</h3>
+          <p class="question-explain">Participants usually need to know whether they can stop participation, until when they can withdraw data, and what happens to already collected data. Withdrawal may become difficult after anonymization or aggregation.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>A participant asks for an interview recording to be deleted</li><li>A participant wants to withdraw after a workshop</li><li>A participant wants survey answers removed after anonymous submission</li><li>A participant wants quotes removed from a thesis draft</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q7" value="yes"> Yes</label>
+        <label><input type="radio" name="q7" value="no"> No</label>
+        <label><input type="radio" name="q7" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q7" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Participants may incorrectly assume that data can always be deleted.</li><li>Researchers may be unable to remove anonymized data.</li><li>Withdrawal deadlines may be unclear.</li><li>Participants may not know whether withdrawal has consequences.</li><li>Data deletion requests may conflict with already aggregated or published results.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <section class="domain d2" data-domain="Domain 2 – Participant Welfare & Harm"><h2>Domain 2 – Participant Welfare & Harm</h2><p>These questions help identify physical, psychological, social, professional, privacy-related, and legal harms that may arise through participation.</p></section>
+    <article class="question-card" id="q8" data-question="8" data-domain="Domain 2 – Participant Welfare & Harm">
+      <div class="question-head">
+        <div class="q-number">8</div>
+        <div>
+          <h3>Could participation create burden?</h3>
+          <p class="question-explain">Burden includes time, effort, cognitive load, physical effort, emotional energy, disruption, and inconvenience. A study can be low-risk but still burdensome.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Three-hour co-design workshops</li><li>Daily diary entries over several weeks</li><li>Long VR evaluations</li><li>Repeated usability testing tasks</li><li>Lengthy interviews after working hours</li><li>Prototype evaluations requiring travel</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q8" value="yes"> Yes</label>
+        <label><input type="radio" name="q8" value="no"> No</label>
+        <label><input type="radio" name="q8" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q8" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Fatigue, frustration, or cognitive overload.</li><li>Lower quality consent and lower quality data.</li><li>Participants may feel exploited if burden is disproportionate.</li><li>Research fatigue in small communities or organizations.</li><li>Physical or mental exhaustion, especially in long workshops or intensive studies.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q9" data-question="9" data-domain="Domain 2 – Participant Welfare & Harm">
+      <div class="question-head">
+        <div class="q-number">9</div>
+        <div>
+          <h3>Could participation be uncomfortable or stressful?</h3>
+          <p class="question-explain">Some design research asks people to reflect on personal experiences, frustrations, failures, identities, health, or social relations. Even if the topic seems ordinary, it may be sensitive for participants.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Discussing workplace conflicts in an interview</li><li>Reflecting on loneliness in a social technology study</li><li>Discussing discrimination in service design</li><li>Recalling healthcare experiences</li><li>Talking about financial decisions in a budgeting app study</li><li>Evaluating an accessibility technology that highlights disability experiences</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q9" value="yes"> Yes</label>
+        <label><input type="radio" name="q9" value="no"> No</label>
+        <label><input type="radio" name="q9" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q9" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Stress, anxiety, embarrassment, or emotional exhaustion.</li><li>Re-traumatization or resurfacing difficult memories.</li><li>Participants may disclose more than intended.</li><li>Participants may regret participation afterwards.</li><li>Participants may avoid future research participation because of negative experience.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q10" data-question="10" data-domain="Domain 2 – Participant Welfare & Harm">
+      <div class="question-head">
+        <div class="q-number">10</div>
+        <div>
+          <h3>Does the research involve sensitive topics?</h3>
+          <p class="question-explain">Sensitive topics may create risk even when participants are adults and the method is simple. Sensitivity depends on topic, participant group, context, and consequences of disclosure.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Mental health apps</li><li>Disability-related technology</li><li>Religion or political opinion research</li><li>Gender identity or sexuality in design research</li><li>Financial hardship in service design</li><li>Domestic violence or safety technologies</li><li>Workplace misconduct studies</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q10" value="yes"> Yes</label>
+        <label><input type="radio" name="q10" value="no"> No</label>
+        <label><input type="radio" name="q10" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q10" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Emotional distress or discomfort.</li><li>Social stigma or reputational harm.</li><li>Disclosure of sensitive personal information.</li><li>Community-level harm through stereotyping.</li><li>Legal, professional, or family consequences if information becomes known.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q11" data-question="11" data-domain="Domain 2 – Participant Welfare & Harm">
+      <div class="question-head">
+        <div class="q-number">11</div>
+        <div>
+          <h3>Could participation cause harm?</h3>
+          <p class="question-explain">Harm can be physical, psychological, social, professional, privacy-related, legal, or digital. HCI and design projects often involve multiple small risks that together become significant.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>VR sickness during immersive testing</li><li>Wearable sensor discomfort</li><li>Motion-tracking or biometric studies</li><li>Critical comments about an employer in interviews</li><li>Publishing detailed personas from a small user group</li><li>AI profiling of participant behaviour</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q11" value="yes"> Yes</label>
+        <label><input type="radio" name="q11" value="no"> No</label>
+        <label><input type="radio" name="q11" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q11" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Physical harm: injury, fatigue, strain, nausea, discomfort.</li><li>Psychological harm: stress, anxiety, embarrassment, distress.</li><li>Social harm: stigma, exclusion, damaged relationships.</li><li>Professional harm: workplace or reputation consequences.</li><li>Privacy harm: confidentiality breaches or re-identification.</li><li>Legal harm: disclosure of illegal behaviour or regulatory consequences.</li><li>Digital harm: profiling, surveillance, or AI-related misuse.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q12" data-question="12" data-domain="Domain 2 – Participant Welfare & Harm">
+      <div class="question-head">
+        <div class="q-number">12</div>
+        <div>
+          <h3>Could incidental findings or by-catch occur?</h3>
+          <p class="question-explain">Incidental findings are unexpected findings that may matter to the participant or others. By-catch is information not needed for the research question but inevitably collected during data collection or pre-analysis.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>A usability test suggests a participant may have dyslexia</li><li>An interview reveals workplace misconduct</li><li>A participant discloses abuse or self-harm</li><li>A diary study reveals unsafe living conditions</li><li>Screen recordings capture unrelated private information</li><li>A workplace study reveals possible legal violations</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q12" value="yes"> Yes</label>
+        <label><input type="radio" name="q12" value="no"> No</label>
+        <label><input type="radio" name="q12" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q12" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Researchers may be unsure whether to act or remain confidential.</li><li>Acting on information may harm participants; not acting may also harm them.</li><li>Participants may expect help the researcher cannot provide.</li><li>Unnecessary by-catch may increase privacy and legal risks.</li><li>The project may need a protocol before data collection starts.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <section class="domain d3" data-domain="Domain 3 – Recruitment & Access"><h2>Domain 3 – Recruitment & Access</h2><p>These questions identify whether the way participants are found, invited, and accessed creates pressure, bias, exclusion, or confidentiality issues.</p></section>
+    <article class="question-card" id="q13" data-question="13" data-domain="Domain 3 – Recruitment & Access">
+      <div class="question-head">
+        <div class="q-number">13</div>
+        <div>
+          <h3>How are participants recruited?</h3>
+          <p class="question-explain">Recruitment is part of the ethics of the study. It shapes who participates, whether participation is voluntary, and whether privacy is protected before the study even begins.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Recruiting through LinkedIn for a professional UX study</li><li>Posting a survey in student WhatsApp groups</li><li>Using university mailing lists</li><li>Recruiting employees through a company contact</li><li>Recruiting users through a school, hospital, or NGO</li><li>Inviting friends and personal contacts to test a prototype</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q13" value="yes"> Yes</label>
+        <label><input type="radio" name="q13" value="no"> No</label>
+        <label><input type="radio" name="q13" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q13" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Selection bias or exclusion of relevant groups.</li><li>Participants may feel manipulated, coerced, or socially pressured.</li><li>Privacy concerns may arise before consent is obtained.</li><li>Recruitment materials may be misleading or incomplete.</li><li>Personal-network recruitment may create social desirability bias.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q14" data-question="14" data-domain="Domain 3 – Recruitment & Access">
+      <div class="question-head">
+        <div class="q-number">14</div>
+        <div>
+          <h3>Are gatekeepers involved?</h3>
+          <p class="question-explain">Gatekeepers provide access to participants, spaces, or communities. They can be useful, but they may also influence participation, confidentiality, and power relations.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>A manager distributes an invitation to employees</li><li>A teacher gives access to students</li><li>Healthcare staff introduce a researcher to patients</li><li>A community leader selects participants</li><li>A company mentor recommends employees for interviews</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q14" value="yes"> Yes</label>
+        <label><input type="radio" name="q14" value="no"> No</label>
+        <label><input type="radio" name="q14" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q14" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Participants may feel obligated to participate because the gatekeeper is involved.</li><li>Gatekeepers may influence who is included or excluded.</li><li>Gatekeepers may expect access to results or raw data.</li><li>Participants may doubt confidentiality.</li><li>Permission from a gatekeeper may be mistaken for participant consent.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q15" data-question="15" data-domain="Domain 3 – Recruitment & Access">
+      <div class="question-head">
+        <div class="q-number">15</div>
+        <div>
+          <h3>Is the target number of participants realistic?</h3>
+          <p class="question-explain">Ethical research burdens as few people as necessary while remaining methodologically sound. Unrealistic recruitment targets can create pressure and poor research decisions.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Trying to recruit 30 employees from a company of 40 people</li><li>Recruiting rare experts for a graduation project within a short timeline</li><li>Asking the same student community to join several design studies</li><li>Recruiting vulnerable participants without enough time or support</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q15" value="yes"> Yes</label>
+        <label><input type="radio" name="q15" value="no"> No</label>
+        <label><input type="radio" name="q15" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q15" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Research fatigue among organizations, communities, or participant pools.</li><li>Pressure to recruit people who do not meet inclusion criteria.</li><li>Pressure on participants to help the student graduate.</li><li>Underpowered or methodologically weak studies that still burden participants.</li><li>Increased likelihood of shortcuts in consent or recruitment.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <section class="domain d4" data-domain="Domain 4 – Data & Privacy"><h2>Domain 4 – Data & Privacy</h2><p>These questions support early DMP thinking by separating types of data according to their level of identifiability and privacy risk.</p></section>
+    <article class="question-card" id="q16" data-question="16" data-domain="Domain 4 – Data & Privacy">
+      <div class="question-head">
+        <div class="q-number">16</div>
+        <div>
+          <h3>Will information about people be collected?</h3>
+          <p class="question-explain">Information about people can include what they say, do, click, write, wear, record, upload, or generate. It can be personal data even if you do not collect names.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Survey responses about user habits</li><li>Interview transcripts</li><li>Observation notes</li><li>Usability-test recordings</li><li>Behavioural logs from a prototype</li><li>Sensor data from wearables</li><li>Screenshots or screen recordings</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q16" value="yes"> Yes</label>
+        <label><input type="radio" name="q16" value="no"> No</label>
+        <label><input type="radio" name="q16" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q16" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>GDPR obligations may not be recognized.</li><li>Unnecessary information may be collected.</li><li>Participants may not understand what is being processed.</li><li>Data may be stored or shared without proper planning.</li><li>Information may become identifying when combined with context.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q17" data-question="17" data-domain="Domain 4 – Data & Privacy">
+      <div class="question-head">
+        <div class="q-number">17</div>
+        <div>
+          <h3>What level of identifiability exists?</h3>
+          <p class="question-explain">Different data types require different storage and handling. Contact details, consent forms, recordings, transcripts, and anonymized outputs should be treated separately. The goal is to recognize whether data can identify someone directly, indirectly, or through recordings.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Anonymous survey data used only in aggregate</li><li>Demographics such as age, job, department, or country</li><li>Email addresses for scheduling interviews</li><li>Audio recordings for transcription</li><li>Photos of participants using a prototype</li><li>Free-text responses that mention names or workplaces</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q17" value="yes"> Yes</label>
+        <label><input type="radio" name="q17" value="no"> No</label>
+        <label><input type="radio" name="q17" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q17" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Level 0 anonymous data: participants may assume deletion remains possible even when data cannot be traced back.</li><li>Level 1 indirectly identifiable data: combinations such as age + role + company can identify people.</li><li>Level 2 direct identifiers: names, emails, phone numbers, student numbers, or employee IDs can expose identity.</li><li>Level 3 sensitive information: health, mental health, sexuality, political views, religion, finances, criminal history, or online behaviour can cause serious harm if disclosed.</li><li>Level 4 highly identifying materials: audio, video, photographs, screen recordings, and biometrics can identify people even without names.</li><li>Incorrectly calling data anonymous may mislead participants and reviewers.</li></ul><h4>DMP-oriented categories</h4><ul><li>Contact details should be stored separately from research data.</li><li>Consent forms should be stored separately from responses and transcripts.</li><li>Raw recordings should be separated from transcripts and deleted when no longer needed if possible.</li><li>Pseudonymized data still counts as personal data if a key exists.</li><li>Anonymized data means there is no realistic way to trace the data back to a person.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q18" data-question="18" data-domain="Domain 4 – Data & Privacy">
+      <div class="question-head">
+        <div class="q-number">18</div>
+        <div>
+          <h3>Could participants be identified?</h3>
+          <p class="question-explain">Students often think data is anonymous when it is only pseudonymized or indirectly identifiable. Identification can happen through quotes, roles, images, small samples, unique experiences, or combinations of details.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Publishing a quote from the only design manager in a company</li><li>Using a persona based on one identifiable participant</li><li>Reporting demographic tables from a very small group</li><li>Showing a participant's workspace in a thesis image</li><li>Describing a participant's rare job role or life situation</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q18" value="yes"> Yes</label>
+        <label><input type="radio" name="q18" value="no"> No</label>
+        <label><input type="radio" name="q18" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q18" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>False assumptions of anonymity.</li><li>Re-identification after publication.</li><li>Loss of confidentiality despite removing names.</li><li>Workplace, social, or reputational consequences.</li><li>Participants may be identifiable to insiders even if not to the general public.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q19" data-question="19" data-domain="Domain 4 – Data & Privacy">
+      <div class="question-head">
+        <div class="q-number">19</div>
+        <div>
+          <h3>How is data obtained?</h3>
+          <p class="question-explain">Data obtained indirectly can still raise human-subject, privacy, and consent issues. Public availability does not automatically mean ethical use.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Interviews and surveys directly from participants</li><li>Using an existing company dataset</li><li>Analyzing previous research data</li><li>Scraping Reddit, X/Twitter, forums, or app reviews</li><li>Collecting public comments about a design controversy</li><li>Using social media images in a design analysis</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q19" value="yes"> Yes</label>
+        <label><input type="radio" name="q19" value="no"> No</label>
+        <label><input type="radio" name="q19" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q19" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Original consent may not cover reuse.</li><li>Data provenance and quality may be unknown.</li><li>Public data may be used outside its original context.</li><li>People may not expect their posts to become research data.</li><li>Terms of service or platform rules may be violated.</li><li>Human-based big data may require a separate self-reflection or review process.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q20" data-question="20" data-domain="Domain 4 – Data & Privacy">
+      <div class="question-head">
+        <div class="q-number">20</div>
+        <div>
+          <h3>Is data minimization respected?</h3>
+          <p class="question-explain">Data minimization means collecting only what is necessary to answer the research question. In design research, students often collect rich data because it seems useful, not because it is needed.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Collecting exact age when age range is enough</li><li>Recording video when observation notes would suffice</li><li>Collecting names when participant IDs would work</li><li>Collecting full screen recordings when only task completion time is needed</li><li>Asking demographic questions unrelated to the research question</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q20" value="yes"> Yes</label>
+        <label><input type="radio" name="q20" value="no"> No</label>
+        <label><input type="radio" name="q20" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q20" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Unnecessary privacy risk.</li><li>Increased consequences if data is breached.</li><li>More complex DMP and consent obligations.</li><li>Participants may disclose more than necessary.</li><li>Sensitive or identifying by-catch may be collected without need.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q21" data-question="21" data-domain="Domain 4 – Data & Privacy">
+      <div class="question-head">
+        <div class="q-number">21</div>
+        <div>
+          <h3>Are anonymity, confidentiality, and data management sufficiently considered?</h3>
+          <p class="question-explain">Privacy protection depends on storage, access, retention, separation of data types, and clarity in participant information. This is the bridge toward the DMP.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Recording interviews on a phone before transferring them</li><li>Keeping consent forms in the same folder as survey data</li><li>Sharing transcripts with a company mentor</li><li>Storing prototype logs in a third-party platform</li><li>Keeping contact details after recruitment is complete</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q21" value="yes"> Yes</label>
+        <label><input type="radio" name="q21" value="no"> No</label>
+        <label><input type="radio" name="q21" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q21" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Data breaches or unauthorized access.</li><li>Improper storage of recordings, consent forms, or transcripts.</li><li>Excessive retention periods.</li><li>Identifiable information stored together with research data.</li><li>Participants are not told how long data is kept or who can access it.</li><li>Data management plans and informed consent documents may become inconsistent.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q22" data-question="22" data-domain="Domain 4 – Data & Privacy">
+      <div class="question-head">
+        <div class="q-number">22</div>
+        <div>
+          <h3>Are participants aware of data sharing and publication?</h3>
+          <p class="question-explain">Graduation projects often result in theses, presentations, repositories, or publications. Participants need to understand what may become public and what will remain private.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Publishing a thesis in the TU Delft repository</li><li>Including quotes in a public thesis</li><li>Sharing anonymized data in a repository</li><li>Showing prototype evaluation results to a company</li><li>Using images in a conference paper or portfolio</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q22" value="yes"> Yes</label>
+        <label><input type="radio" name="q22" value="no"> No</label>
+        <label><input type="radio" name="q22" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q22" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Participants may be unaware that outputs become public.</li><li>Participants may not expect quotes, images, or personas to appear in a thesis.</li><li>Anonymized data may still be re-identifiable.</li><li>Future reuse may not be covered by consent.</li><li>Participants may want their identity known, but this may not be adequately planned.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q23" data-question="23" data-domain="Domain 4 – Data & Privacy">
+      <div class="question-head">
+        <div class="q-number">23</div>
+        <div>
+          <h3>Are there limits to confidentiality?</h3>
+          <p class="question-explain">Some disclosures cannot always remain confidential. Participants should not be promised absolute confidentiality if there are legal, safety, or safeguarding limits.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>A participant discloses self-harm intentions</li><li>A participant reveals harm to others</li><li>A child or vulnerable adult appears at risk</li><li>A participant reveals criminal activity</li><li>A security-sensitive or extremist topic arises in an interview</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q23" value="yes"> Yes</label>
+        <label><input type="radio" name="q23" value="no"> No</label>
+        <label><input type="radio" name="q23" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q23" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Participants may believe everything will remain confidential.</li><li>Researchers may be unprepared for serious disclosures.</li><li>Legal or safeguarding obligations may become unclear.</li><li>Acting or not acting may both create harm.</li><li>The participant information sheet may be misleading if limits are not explained.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <section class="domain d5" data-domain="Domain 5 – AI & Emerging Technologies"><h2>Domain 5 – AI & Emerging Technologies</h2><p>These questions identify risks introduced by AI tools, algorithmic systems, model training, automated analysis, and emerging technologies.</p></section>
+    <article class="question-card" id="q24" data-question="24" data-domain="Domain 5 – AI & Emerging Technologies">
+      <div class="question-head">
+        <div class="q-number">24</div>
+        <div>
+          <h3>Is AI used anywhere in the research process?</h3>
+          <p class="question-explain">AI use includes tools used by the researcher and AI systems that participants interact with. Students should consider AI even when it is only used for transcription, coding, analysis, translation, or writing support.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Using ChatGPT, Claude, or Copilot to summarize interviews</li><li>AI transcription of recorded interviews</li><li>AI coding or clustering of qualitative data</li><li>Generating images or stimuli for a design study</li><li>Participants interacting with a chatbot prototype</li><li>Training or fine-tuning a model using participant data</li><li>Using AI to infer user states, emotions, or preferences</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q24" value="yes"> Yes</label>
+        <label><input type="radio" name="q24" value="no"> No</label>
+        <label><input type="radio" name="q24" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q24" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Participant data may be uploaded to third-party AI providers.</li><li>Outputs may hallucinate, distort, or overinterpret participant responses.</li><li>Biases in models or datasets may affect analysis or design decisions.</li><li>AI decisions may be difficult to explain or reproduce.</li><li>Participants may not understand that AI is involved.</li><li>Generated content may create intellectual-property or authorship uncertainty.</li><li>AI tools may retain, reuse, or process data in ways that conflict with consent or DMP plans.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <section class="domain d6" data-domain="Domain 6 – Research Design & Integrity"><h2>Domain 6 – Research Design & Integrity</h2><p>These questions connect ethics to research quality. Poorly designed research can be unethical because it burdens participants without producing valid or useful knowledge.</p></section>
+    <article class="question-card" id="q25" data-question="25" data-domain="Domain 6 – Research Design & Integrity">
+      <div class="question-head">
+        <div class="q-number">25</div>
+        <div>
+          <h3>Is the chosen method appropriate?</h3>
+          <p class="question-explain">Ethics committees may consider whether the method can answer the research question. A weak method can make participant burden unjustified.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Conducting interviews without understanding interview methods</li><li>Drawing strong claims from a very small usability test</li><li>Using a survey when observation is needed</li><li>Using AI analysis without human validation</li><li>Testing a prototype with participants who do not match intended users</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q25" value="yes"> Yes</label>
+        <label><input type="radio" name="q25" value="no"> No</label>
+        <label><input type="radio" name="q25" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q25" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Participants are burdened without scientific or design value.</li><li>Invalid or misleading conclusions.</li><li>Overclaiming results beyond what the method supports.</li><li>Inappropriate inclusion or exclusion criteria.</li><li>Reduced trust in research and design outcomes.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q26" data-question="26" data-domain="Domain 6 – Research Design & Integrity">
+      <div class="question-head">
+        <div class="q-number">26</div>
+        <div>
+          <h3>Is the project sufficiently planned?</h3>
+          <p class="question-explain">Before participants are approached, the procedure, recruitment, data handling, consent process, and safety considerations should be coherent enough to explain clearly.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Recruiting users before deciding what data to collect</li><li>Starting company interviews before agreeing on confidentiality</li><li>Running a workshop without a plan for recordings or consent</li><li>Testing a prototype before defining what will be measured</li><li>Using a new platform without checking data storage</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q26" value="yes"> Yes</label>
+        <label><input type="radio" name="q26" value="no"> No</label>
+        <label><input type="radio" name="q26" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q26" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Participants may be treated inconsistently.</li><li>Consent materials may not match actual procedures.</li><li>Data management gaps may emerge too late.</li><li>Safety or distress procedures may be missing.</li><li>Recruitment may start before HREC approval or supervisor sign-off.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q27" data-question="27" data-domain="Domain 6 – Research Design & Integrity">
+      <div class="question-head">
+        <div class="q-number">27</div>
+        <div>
+          <h3>Is deception used?</h3>
+          <p class="question-explain">Some HCI and design studies hide information to avoid influencing participant behaviour. Deception can sometimes be justified, but it increases ethical risk and requires careful explanation.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Wizard-of-Oz studies where a human secretly controls a system</li><li>A prototype presented as fully functional when it is not</li><li>Hiding the true purpose of a behavioural experiment</li><li>Using simulated AI responses without telling participants upfront</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q27" value="yes"> Yes</label>
+        <label><input type="radio" name="q27" value="no"> No</label>
+        <label><input type="radio" name="q27" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q27" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Participants cannot make a fully informed decision.</li><li>Participants may feel embarrassed, manipulated, or betrayed.</li><li>Trust in the researcher or institution may be damaged.</li><li>Consent may be ethically weaker.</li><li>Participants may behave differently if they later discover deception.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q28" data-question="28" data-domain="Domain 6 – Research Design & Integrity">
+      <div class="question-head">
+        <div class="q-number">28</div>
+        <div>
+          <h3>Is there a debriefing plan?</h3>
+          <p class="question-explain">Debriefing is especially important when deception, sensitive topics, unexpected distress, or unclear expectations are involved. It helps participants understand what happened and what their rights are afterwards.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Explaining a Wizard-of-Oz setup after the session</li><li>Clarifying that an AI system was simulated</li><li>Checking in after a stressful interview</li><li>Explaining the true purpose of a behavioural task</li><li>Informing participants how to withdraw data after learning more</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q28" value="yes"> Yes</label>
+        <label><input type="radio" name="q28" value="no"> No</label>
+        <label><input type="radio" name="q28" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q28" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Participants may leave with misconceptions.</li><li>Participants may remain distressed or confused.</li><li>Trust may be damaged if deception is not explained.</li><li>Participants may not know they can still withdraw.</li><li>Potential harms may go unnoticed after participation.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q29" data-question="29" data-domain="Domain 6 – Research Design & Integrity">
+      <div class="question-head">
+        <div class="q-number">29</div>
+        <div>
+          <h3>Is there a conflict of interest?</h3>
+          <p class="question-explain">Conflicts can be real, potential, or perceived. They may involve the student, supervisor, institution, funder, company partner, or future employer.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Graduation project at an internship company</li><li>A company wants positive results for a product</li><li>A student hopes to be hired by the partner company</li><li>A sponsor has a preferred design direction</li><li>A researcher evaluates their own prototype</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q29" value="yes"> Yes</label>
+        <label><input type="radio" name="q29" value="no"> No</label>
+        <label><input type="radio" name="q29" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q29" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Biased study design or analysis.</li><li>Selective reporting or suppression of negative findings.</li><li>Reduced independence.</li><li>Participants may doubt confidentiality or neutrality.</li><li>The thesis may be shaped by company interests rather than research integrity.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <section class="domain d7" data-domain="Domain 7 – Organizations & Companies"><h2>Domain 7 – Organizations & Companies</h2><p>These questions address external organizations, a common context for TU Delft graduation projects. Organizational involvement creates specific consent, confidentiality, ownership, and publication risks.</p></section>
+    <article class="question-card" id="q30" data-question="30" data-domain="Domain 7 – Organizations & Companies">
+      <div class="question-head">
+        <div class="q-number">30</div>
+        <div>
+          <h3>Is an external organization involved?</h3>
+          <p class="question-explain">You do not need to name the organization. The ethical issue is whether a company, school, government body, NGO, hospital, or other organization shapes access, data, goals, or publication.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Graduation project with a company</li><li>Internship-based design research</li><li>Research in a school or hospital</li><li>A start-up providing a prototype or dataset</li><li>A government or NGO partner defining the design challenge</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q30" value="yes"> Yes</label>
+        <label><input type="radio" name="q30" value="no"> No</label>
+        <label><input type="radio" name="q30" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q30" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Confidential information may be exposed.</li><li>Organizational goals may influence the research.</li><li>Data ownership may be unclear.</li><li>Publication restrictions may conflict with thesis requirements.</li><li>Unauthorized data collection or lack of organizational permission may create contractual or practical conflicts.</li><li>The organization may expect access to raw data or participant identities.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q31" data-question="31" data-domain="Domain 7 – Organizations & Companies">
+      <div class="question-head">
+        <div class="q-number">31</div>
+        <div>
+          <h3>Are participants recruited through the organization?</h3>
+          <p class="question-explain">This is one of the most common risks in graduation projects. Employees, students, patients, or clients may feel participation is expected if the organization introduces the study.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Managers forwarding a survey to employees</li><li>A company mentor selecting interviewees</li><li>Teachers inviting students to join a design study</li><li>A hospital contact identifying patients</li><li>An NGO connecting the student to service users</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q31" value="yes"> Yes</label>
+        <label><input type="radio" name="q31" value="no"> No</label>
+        <label><input type="radio" name="q31" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q31" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Participants may feel coerced or monitored.</li><li>Participants may fear repercussions for critical comments.</li><li>Social desirability bias may reduce honesty.</li><li>Managers or gatekeepers may know who participated.</li><li>The organizational relationship may undermine voluntary consent.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q32" data-question="32" data-domain="Domain 7 – Organizations & Companies">
+      <div class="question-head">
+        <div class="q-number">32</div>
+        <div>
+          <h3>Could findings affect the organization?</h3>
+          <p class="question-explain">Research results may reveal information about internal processes, culture, product weaknesses, employee experiences, or strategic decisions.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>A workplace culture study</li><li>A service design project exposing operational problems</li><li>A UX evaluation showing serious product flaws</li><li>Employee interviews about workflow interruptions</li><li>Research on internal AI tool adoption</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q32" value="yes"> Yes</label>
+        <label><input type="radio" name="q32" value="no"> No</label>
+        <label><input type="radio" name="q32" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q32" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Commercial harm or reputational damage.</li><li>Legal or contractual consequences.</li><li>Pressure to remove or soften findings.</li><li>Conflict over whether the thesis can be public.</li><li>Participants may be identifiable through organizational context.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <section class="domain d8" data-domain="Domain 8 – International Research"><h2>Domain 8 – International Research</h2><p>These questions apply when research is physically conducted outside the Netherlands or when local context changes participant, researcher, organizational, or data risk.</p></section>
+    <article class="question-card" id="q33" data-question="33" data-domain="Domain 8 – International Research">
+      <div class="question-head">
+        <div class="q-number">33</div>
+        <div>
+          <h3>Is research physically conducted outside the Netherlands?</h3>
+          <p class="question-explain">This includes fieldwork, interviews, workshops, observations, or user tests abroad. The main issue is not travel itself, but changes in legal, cultural, political, safety, and privacy context.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Fieldwork abroad during a graduation project</li><li>Interviews at an international company site</li><li>Workshops during an exchange or design field trip</li><li>Prototype evaluation in another country</li><li>Observation in a public space abroad</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q33" value="yes"> Yes</label>
+        <label><input type="radio" name="q33" value="no"> No</label>
+        <label><input type="radio" name="q33" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q33" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Local ethics approval may be required.</li><li>Local privacy or data-transfer rules may differ from GDPR expectations.</li><li>Consent norms may be culturally different.</li><li>Participants may face political, social, or legal consequences for speaking openly.</li><li>Researcher safety risks may increase through travel, lone working, harassment, or political instability.</li><li>Language differences may affect consent and data interpretation.</li><li>Data security risks may arise through device loss, inspection, theft, or insecure networks.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <section class="domain d9" data-domain="Domain 9 – Broader Impacts"><h2>Domain 9 – Broader Impacts</h2><p>These questions look beyond individual participants to organizations, communities, society, and possible misuse of outputs.</p></section>
+    <article class="question-card" id="q34" data-question="34" data-domain="Domain 9 – Broader Impacts">
+      <div class="question-head">
+        <div class="q-number">34</div>
+        <div>
+          <h3>Could organizations, communities, or society be affected?</h3>
+          <p class="question-explain">Design and HCI research can affect people beyond direct participants, especially when results describe communities, institutions, technologies, or social problems.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Research on accessibility barriers in public services</li><li>AI systems for education or hiring</li><li>Healthcare technology evaluations</li><li>Smart-city or surveillance-related systems</li><li>Design research with marginalized communities</li><li>Publication of findings about a company or school</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q34" value="yes"> Yes</label>
+        <label><input type="radio" name="q34" value="no"> No</label>
+        <label><input type="radio" name="q34" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q34" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Community stigmatization or stereotyping.</li><li>Exclusion or discrimination through design decisions.</li><li>Reputational harm to organizations or communities.</li><li>Findings may be generalized unfairly from a small sample.</li><li>A design intervention may create unintended consequences for non-participants.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <article class="question-card" id="q35" data-question="35" data-domain="Domain 9 – Broader Impacts">
+      <div class="question-head">
+        <div class="q-number">35</div>
+        <div>
+          <h3>Could the results be misused?</h3>
+          <p class="question-explain">Some research outputs can be used in harmful ways, even if the student's intention is positive. This includes dual-use concerns and misuse of models, datasets, insights, or prototypes.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>User behaviour insights used for manipulation</li><li>Emotion recognition or profiling systems</li><li>Location-based tracking prototypes</li><li>AI tools that could support surveillance</li><li>Security-related research that reveals vulnerabilities</li><li>Persuasive design patterns used in exploitative ways</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q35" value="yes"> Yes</label>
+        <label><input type="radio" name="q35" value="no"> No</label>
+        <label><input type="radio" name="q35" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q35" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Surveillance or profiling.</li><li>Manipulation of users.</li><li>Discrimination or exclusion.</li><li>Human-rights impacts.</li><li>Harmful secondary applications of datasets, models, or design insights.</li><li>Dual-use concerns where the same knowledge can support beneficial or harmful applications.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+    <section class="domain d10" data-domain="Domain 10 – Researcher Safety"><h2>Domain 10 – Researcher Safety</h2><p>These questions identify risks to the student researcher. HREC preparation should consider harms to researchers as well as participants.</p></section>
+    <article class="question-card" id="q36" data-question="36" data-domain="Domain 10 – Researcher Safety">
+      <div class="question-head">
+        <div class="q-number">36</div>
+        <div>
+          <h3>Could the research create risks for the researcher?</h3>
+          <p class="question-explain">Students may face physical, emotional, legal, digital, or professional risks through fieldwork, interviews, online research, or sensitive topics.</p>
+        </div>
+      </div>
+      <div class="examples"><strong>Examples from HCI/design research</strong><ul><li>Interviewing participants alone in unfamiliar locations</li><li>Researching extremist groups or illegal behaviour</li><li>Moderating emotionally intense workshops</li><li>Receiving disturbing disclosures</li><li>Being harassed online after recruitment posts</li><li>Carrying identifiable data while travelling</li><li>Working inside a company where findings may be politically sensitive</li></ul></div>
+      <div class="answer-row" aria-label="Answer options">
+        <label><input type="radio" name="q36" value="yes"> Yes</label>
+        <label><input type="radio" name="q36" value="no"> No</label>
+        <label><input type="radio" name="q36" value="not-sure"> Not sure</label>
+        <label><input type="radio" name="q36" value="not-applicable"> Not applicable</label>
+      </div>
+      <button type="button" class="btn btn-default btn-sm details-toggle">Show details and potential risks</button>
+      <div class="risk-details">
+        <h4>Potential risks to consider</h4>
+        <ul><li>Harassment, threats, or intimidation.</li><li>Emotional burden or exposure to disturbing content.</li><li>Physical safety risks during fieldwork or lone working.</li><li>Online attacks or unwanted contact.</li><li>Legal or professional risk when handling sensitive disclosures.</li><li>Additional protection may be needed for the researcher's contact details and personal data.</li></ul>
+        <p><span class="tag">Reflect</span><span class="tag">Discuss with supervisor if relevant</span><span class="tag">Prepare HREC/DMP notes</span></p>
+      </div>
+    </article>
+  </form>
+
+  <div class="summary-box">
+    <h2>Final reflection</h2>
+    <p>This tool should not produce an ethics score. After completing the questions, students should review the areas they marked <strong>Yes</strong> or <strong>Not sure</strong> and prepare discussion points for their supervisor, HREC reviewers, Privacy Team, Data Steward, or organizational contact where relevant.</p>
+    <p><strong>Suggested output categories:</strong> potential participant risks, privacy and data risks, AI-related risks, organizational risks, societal risks, researcher risks, and unresolved uncertainties.</p>
+    <button class="btn btn-primary" onclick="window.print()">Print or save as PDF</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var total = 36;
+  function updateProgress(){
+    var answered = document.querySelectorAll('input[type="radio"]:checked').length;
+    var pct = Math.round((answered / total) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progressText').textContent = answered + ' of ' + total + ' questions answered';
+    var next = null;
+    for(var i=1;i<=total;i++){
+      if(!document.querySelector('input[name="q'+i+'"]:checked')) { next = document.getElementById('q'+i); break; }
+    }
+    document.querySelectorAll('.question-card').forEach(function(card){ card.classList.remove('active'); });
+    if(next){ next.classList.add('active'); document.getElementById('currentDomain').textContent = 'Current: ' + next.getAttribute('data-domain'); }
+    else { document.getElementById('currentDomain').textContent = 'All questions answered'; }
+  }
+  document.querySelectorAll('input[type="radio"]').forEach(function(input){ input.addEventListener('change', updateProgress); });
+  document.querySelectorAll('.details-toggle').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var details = btn.parentElement.querySelector('.risk-details');
+      var open = details.style.display === 'block';
+      details.style.display = open ? 'none' : 'block';
+      btn.textContent = open ? 'Show details and potential risks' : 'Hide details and potential risks';
+    });
+  });
+  updateProgress();
+})();
+</script>
+</body>
+</html>
