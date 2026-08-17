@@ -87,8 +87,8 @@
   <form id="questionnaire"></form>
 
   <div class="actions">
-    <button class="primary" type="submit" form="questionnaire">Calculate &amp; generate file</button>
-    <button class="secondary" id="sendButton" type="button" disabled>Send to lamp</button>
+    <button class="primary" type="submit" form="questionnaire">Calculate my color</button>
+    <button class="secondary" id="sendButton" type="button" disabled>Send color to lamp</button>
   </div>
 
   <section id="result" aria-live="polite">
