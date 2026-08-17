@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <title>Lamp Questionnaire</title>
+  <style>
+    :root {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #171717;
+      background: #f5f5f5;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 32px 16px; }
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    }
+    h1 { margin: 0 0 8px; font-size: clamp(28px, 5vw, 42px); }
+    .intro { color: #666; margin: 0 0 28px; }
+    fieldset {
+      border: 0;
+      padding: 20px 0;
+      margin: 0;
+      border-top: 1px solid #e8e8e8;
+    }
+    legend { font-weight: 700; margin-bottom: 12px; }
+    .choices { display: grid; gap: 10px; }
+    label.choice {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 12px 14px;
+      cursor: pointer;
+    }
+    label.choice:hover { background: #fafafa; }
+    input[type="radio"] { accent-color: #111; }
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 13px 18px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .primary { background: #111; color: white; }
+    .secondary { background: #ececec; color: #111; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    #result {
+      display: none;
+      margin-top: 26px;
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid #ddd;
+    }
+    .swatch {
+      width: 100%;
+      height: 90px;
+      border-radius: 14px;
+      margin: 14px 0;
+      border: 1px solid rgba(0,0,0,.12);
+    }
+    code, pre {
+      background: #f4f4f4;
+      border-radius: 8px;
+    }
+    pre {
+      padding: 14px;
+      overflow: auto;
+      font-size: 13px;
+    }
+    .status { margin-top: 10px; color: #555; min-height: 1.5em; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Lamp Questionnaire</h1>
+  <p class="intro">Answer all questions. Your responses are converted into a score and a lamp color.</p>
+
+  <form id="questionnaire"></form>
+
+  <div class="actions">
+    <button class="primary" type="submit" form="questionnaire">Calculate &amp; generate file</button>
+    <button class="secondary" id="sendButton" type="button" disabled>Send to lamp</button>
+  </div>
+
+  <section id="result" aria-live="polite">
+    <h2>Result</h2>
+    <p id="scoreText"></p>
+    <div id="swatch" class="swatch"></div>
+    <p id="colorText"></p>
+    <pre id="payloadPreview"></pre>
+    <div class="status" id="status"></div>
+  </section>
+</main>
+
+<script>
+/*
+  ===== EDIT THIS CONFIGURATION =====
+  Each answer has a numeric score.
+  Replace the placeholder question/answer text with your real questionnaire.
+*/
+const QUESTIONS = [
+  {
+    text: "Question 1",
+    answers: [
+      { label: "Option A", score: 1 },
+      { label: "Option B", score: 2 },
+      { label: "Option C", score: 3 },
+      { label: "Option D", score: 4 },
+      { label: "Option E", score: 5 }
+    ]
+  },
+  {
+    text: "Question 2",
+    answers: [
+      { label: "Option A", score: 1 },
+      { label: "Option B", score: 2 },
+      { label: "Option C", score: 3 },
+      { label: "Option D", score: 4 },
+      { label: "Option E", score: 5 }
+    ]
+  },
+  {
+    text: "Question 3",
+    answers: [
+      { label: "Option A", score: 1 },
+      { label: "Option B", score: 2 },
+      { label: "Option C", score: 3 },
+      { label: "Option D", score: 4 },
+      { label: "Option E", score: 5 }
+    ]
+  },
+  {
+    text: "Question 4",
+    answers: [
+      { label: "Option A", score: 1 },
+      { label: "Option B", score: 2 },
+      { label: "Option C", score: 3 },
+      { label: "Option D", score: 4 },
+      { label: "Option E", score: 5 }
+    ]
+  },
+  {
+    text: "Question 5",
+    answers: [
+      { label: "Option A", score: 1 },
+      { label: "Option B", score: 2 },
+      { label: "Option C", score: 3 },
+      { label: "Option D", score: 4 },
+      { label: "Option E", score: 5 }
+    ]
+  },
+  {
+    text: "Question 6",
+    answers: [
+      { label: "Option A", score: 1 },
+      { label: "Option B", score: 2 },
+      { label: "Option C", score: 3 },
+      { label: "Option D", score: 4 },
+      { label: "Option E", score: 5 }
+    ]
+  }
+];
+
+/*
+  With 6 questions scored 1–5, total score is 6–30.
+  Change these ranges and colors to your real specification.
+*/
+const COLOR_RANGES = [
+  { max: 10, name: "Blue",   hex: "#2D6BFF" },
+  { max: 15, name: "Green",  hex: "#32C86E" },
+  { max: 20, name: "Yellow", hex: "#FFD43B" },
+  { max: 25, name: "Orange", hex: "#FF8A2A" },
+  { max: Infinity, name: "Red", hex: "#FF4747" }
+];
+
+/*
+  Student integration point:
+  Change this endpoint to whatever the RF sender station exposes.
+  Example possibilities:
+    /api/lamp
+    http://192.168.1.50/set-color
+*/
+const LAMP_ENDPOINT = "/api/lamp";
+
+const form = document.getElementById("questionnaire");
+const resultEl = document.getElementById("result");
+const scoreText = document.getElementById("scoreText");
+const colorText = document.getElementById("colorText");
+const swatch = document.getElementById("swatch");
+const preview = document.getElementById("payloadPreview");
+const sendButton = document.getElementById("sendButton");
+const status = document.getElementById("status");
+
+let latestPayload = null;
+
+function hexToRgb(hex) {
+  const clean = hex.replace("#", "");
+  return {
+    r: parseInt(clean.substring(0, 2), 16),
+    g: parseInt(clean.substring(2, 4), 16),
+    b: parseInt(clean.substring(4, 6), 16)
+  };
+}
+
+function scoreToColor(score) {
+  return COLOR_RANGES.find(range => score <= range.max);
+}
+
+function renderQuestions() {
+  QUESTIONS.forEach((question, qIndex) => {
+    const fieldset = document.createElement("fieldset");
+    const legend = document.createElement("legend");
+    legend.textContent = `${qIndex + 1}. ${question.text}`;
+    fieldset.appendChild(legend);
+
+    const choices = document.createElement("div");
+    choices.className = "choices";
+
+    question.answers.forEach((answer, aIndex) => {
+      const label = document.createElement("label");
+      label.className = "choice";
+
+      const input = document.createElement("input");
+      input.type = "radio";
+      input.name = `q${qIndex}`;
+      input.value = answer.score;
+      input.required = true;
+      input.id = `q${qIndex}a${aIndex}`;
+
+      const span = document.createElement("span");
+      span.textContent = answer.label;
+
+      label.appendChild(input);
+      label.appendChild(span);
+      choices.appendChild(label);
+    });
+
+    fieldset.appendChild(choices);
+    form.appendChild(fieldset);
+  });
+}
+
+function downloadJson(payload) {
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = "lamp-command.json";
+  anchor.click();
+  URL.revokeObjectURL(url);
+}
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(form);
+  let score = 0;
+  const answers = [];
+
+  QUESTIONS.forEach((question, index) => {
+    const value = Number(formData.get(`q${index}`));
+    score += value;
+    answers.push({ question: index + 1, score: value });
+  });
+
+  const color = scoreToColor(score);
+  const rgb = hexToRgb(color.hex);
+
+  latestPayload = {
+    version: 1,
+    score,
+    color: {
+      name: color.name,
+      hex: color.hex,
+      rgb
+    },
+    answers,
+    createdAt: new Date().toISOString()
+  };
+
+  scoreText.textContent = `Final score: ${score}`;
+  colorText.textContent = `Lamp color: ${color.name} (${color.hex})`;
+  swatch.style.background = color.hex;
+  preview.textContent = JSON.stringify(latestPayload, null, 2);
+  resultEl.style.display = "block";
+  sendButton.disabled = false;
+  status.textContent = "Command file generated.";
+
+  downloadJson(latestPayload);
+});
+
+sendButton.addEventListener("click", async () => {
+  if (!latestPayload) return;
+
+  status.textContent = "Sending…";
+
+  try {
+    const response = await fetch(LAMP_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(latestPayload)
+    });
+
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    status.textContent = "Lamp command sent successfully.";
+  } catch (error) {
+    status.textContent =
+      "Could not send to the lamp yet. The RF sender station still needs to expose a compatible HTTP endpoint.";
+  }
+});
+
+renderQuestions();
+</script>
+</body>
+</html>
